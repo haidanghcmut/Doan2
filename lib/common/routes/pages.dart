@@ -1,29 +1,32 @@
-
 import 'package:flutter/material.dart';
 import 'package:chat_app/common/middlewares/middlewares.dart';
 
 import 'package:get/get.dart';
 
+import '../../pages/frames/welcome/index.dart';
+import '../../pages/frames/sign_in/index.dart';
+import '../../pages/message/index.dart';
 import 'routes.dart';
 
 class AppPages {
   static const INITIAL = AppRoutes.INITIAL;
   static final RouteObserver<Route> observer = RouteObservers();
   static List<String> history = [];
- /*
+
   static final List<GetPage> routes = [
-    // 免登陆
+    // about boot up the app
     GetPage(
       name: AppRoutes.INITIAL,
-      page: () => WelcomePage(),
-      binding: WelcomeBinding(),
+      page: () => const WelcomePage(),
+      binding: WelcomeBindings(),
     ),
+    // sign in
     GetPage(
       name: AppRoutes.SIGN_IN,
-      page: () => SignInPage(),
+      page: () => const SignInPage(),
       binding: SignInBinding(),
     ),
-
+/*
     // 需要登录
     // GetPage(
     //   name: AppRoutes.Application,
@@ -42,10 +45,11 @@ class AppPages {
     GetPage(name: AppRoutes.SendCode, page: () => SendCodePage(), binding: SendCodeBinding()),
     // 首页
     GetPage(name: AppRoutes.Contact, page: () => ContactPage(), binding: ContactBinding()),
-    //消息
-    GetPage(name: AppRoutes.Message, page: () => MessagePage(), binding: MessageBinding(),middlewares: [
+    */// Messenger page
+    GetPage(name: AppRoutes.Message, page: () => const MessagePage(), binding: MessageBinding(),middlewares: [
        RouteAuthMiddleware(priority: 1),
      ],),
+    /*
     //我的
     GetPage(name: AppRoutes.Profile, page: () => ProfilePage(), binding: ProfileBinding()),
     //聊天详情
@@ -54,11 +58,6 @@ class AppPages {
     GetPage(name: AppRoutes.Photoimgview, page: () => PhotoImgViewPage(), binding: PhotoImgViewBinding()),
     GetPage(name: AppRoutes.VoiceCall, page: () => VoiceCallViewPage(), binding: VoiceCallViewBinding()),
     GetPage(name: AppRoutes.VideoCall, page: () => VideoCallPage(), binding: VideoCallBinding()),
-  ];*/
-
-
-
-
-
-
+  */
+  ];
 }
