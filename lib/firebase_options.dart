@@ -45,37 +45,44 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyAjgsWDBB87yda79f_eLtc3Zht_i3PuNac',
-    appId: '1:236478353402:web:49e4cc3ac0ea43cf46de43',
+    appId: '1:236478353402:web:018bdbaab13846d846de43',
     messagingSenderId: '236478353402',
     projectId: 'chat-app-e6825',
     authDomain: 'chat-app-e6825.firebaseapp.com',
+    databaseURL: 'https://chat-app-e6825-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'chat-app-e6825.appspot.com',
+    measurementId: 'G-YCL4VE0SR3',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDcDDp3GQ8Q4MXkTpOoJ15YVROduUge6pA',
-    appId: '1:236478353402:android:e152c1144d3dfe6746de43',
+    appId: '1:236478353402:android:9945c3e24449706e46de43',
     messagingSenderId: '236478353402',
     projectId: 'chat-app-e6825',
+    databaseURL: 'https://chat-app-e6825-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'chat-app-e6825.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCXU2FApNBVEAQRFceupGf1QVqCxvHuiok',
-    appId: '1:236478353402:ios:c290829f6487277b46de43',
+    appId: '1:236478353402:ios:a91c74d8ec6d52f246de43',
     messagingSenderId: '236478353402',
     projectId: 'chat-app-e6825',
+    databaseURL: 'https://chat-app-e6825-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'chat-app-e6825.appspot.com',
+    androidClientId: '236478353402-h4i2ltm2eu4g9gu3rhujvompd6qefftc.apps.googleusercontent.com',
     iosClientId: '236478353402-srhvjhl1g9lg4dija3rf2te55gaqto2m.apps.googleusercontent.com',
     iosBundleId: 'com.example.chatApp',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
     apiKey: 'AIzaSyCXU2FApNBVEAQRFceupGf1QVqCxvHuiok',
-    appId: '1:236478353402:ios:cd545481893ea9de46de43',
+    appId: '1:236478353402:ios:a5674a0a65a45fd746de43',
     messagingSenderId: '236478353402',
     projectId: 'chat-app-e6825',
+    databaseURL: 'https://chat-app-e6825-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'chat-app-e6825.appspot.com',
+    androidClientId: '236478353402-h4i2ltm2eu4g9gu3rhujvompd6qefftc.apps.googleusercontent.com',
     iosClientId: '236478353402-k33c242q76ogg002mg3u5gvfremmq4ue.apps.googleusercontent.com',
     iosBundleId: 'com.example.chatApp.RunnerTests',
   );

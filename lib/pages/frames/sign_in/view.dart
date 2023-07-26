@@ -1,10 +1,10 @@
 import 'package:chat_app/common/values/colors.dart';
-import 'package:chat_app/pages/frames/welcome/controller.dart';
+import 'package:chat_app/pages/frames/sign_in/controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class SignInPage extends GetView<WelcomeController> {
+class SignInPage extends GetView<SignInController> {
   const SignInPage({Key? key}) : super(key: key);
 
   Widget _buildLogo() {
@@ -63,7 +63,8 @@ class SignInPage extends GetView<WelcomeController> {
           ),
         ),
         onTap: () {
-          print("... sign up from here third party ${loginType}...");
+          // print("... sign up from here third party ${loginType}...");
+          controller.handleSignIn("google");
         });
   }
 
