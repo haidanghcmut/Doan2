@@ -1,5 +1,7 @@
 import 'package:chat_app/common/entities/entities.dart';
+import 'package:chat_app/common/store/store.dart';
 import 'package:chat_app/pages/frames/sign_in/state.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -25,13 +27,20 @@ class SignInController extends GetxController {
         // var user = await _googleSignIn.signIn();
         var user = await _googleSignIn.signIn();
         if (user != null) {
+          final _gAuthentication = await user.authentication;
+          final _credential = GoogleAuthProvider.credential(
+            accessToken: _gAuthentication.accessToken,
+            idToken: _gAuthentication.idToken,
+          );
+
+          await FirebaseAuth.instance.signInWithCredential(_credential);
           String? displayName = user.displayName;
           String email = user.email;
           String id = user.id;
           String photoUrl = user.photoUrl ?? "assets/icons/google.png";
           LoginRequestEntity loginPanelListRequestEntity = LoginRequestEntity();
           loginPanelListRequestEntity.avatar = photoUrl;
-          loginPanelListRequestEntity.name = displayName ?? "No name";
+          loginPanelListRequestEntity.name = displayName;
           loginPanelListRequestEntity.email = email;
           loginPanelListRequestEntity.open_id = id;
           loginPanelListRequestEntity.type = 2;
@@ -49,8 +58,10 @@ class SignInController extends GetxController {
     }
   }
 
-  asyncPostAllData() {
-    print("...let's go to message page...");
+  asyncPostAllData() async {
+    // first save in the database
+    // second save in the storage
+    UserStore.to.setIsLogin = true;
     Get.offAllNamed(AppRoutes.Message);
   }
 }
