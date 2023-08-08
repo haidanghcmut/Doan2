@@ -8,46 +8,46 @@ import 'package:get/get.dart';
 class UserStore extends GetxController {
   static UserStore get to => Get.find();
 
-  // if logged in or not
+  // 是否登录
   final _isLogin = false.obs;
-  // login token
+  // 令牌 token
   String token = '';
-  // user profile
+  // 用户 profile
   final _profile = UserItem().obs;
 
   bool get isLogin => _isLogin.value;
   UserItem get profile => _profile.value;
   bool get hasToken => token.isNotEmpty;
-
-  set setIsLogin(login) => _isLogin.value = login;
+  set setIsLogin(value) => _isLogin.value = value;
 
   @override
   void onInit() {
     super.onInit();
     token = StorageService.to.getString(STORAGE_USER_TOKEN_KEY);
     var profileOffline = StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
+    print(profileOffline);
     if (profileOffline.isNotEmpty) {
       _isLogin.value = true;
       _profile(UserItem.fromJson(jsonDecode(profileOffline)));
     }
   }
 
-  // saving token
+  // 保存 token
   Future<void> setToken(String value) async {
     await StorageService.to.setString(STORAGE_USER_TOKEN_KEY, value);
     token = value;
   }
 
-  // get profile
+  // 获取 profile
   Future<String> getProfile() async {
     if (token.isEmpty) return "";
     // var result = await UserAPI.profile();
     // _profile(result);
     // _isLogin.value = true;
-   return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
+    return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
   }
 
-  // saving profile
+  // 保存 profile
   Future<void> saveProfile(UserItem profile) async {
     _isLogin.value = true;
     StorageService.to.setString(STORAGE_USER_PROFILE_KEY, jsonEncode(profile));
@@ -55,13 +55,13 @@ class UserStore extends GetxController {
     setToken(profile.access_token!);
   }
 
-  // during logout
+  // 注销
   Future<void> onLogout() async {
-   // if (_isLogin.value) await UserAPI.logout();
-    /*await StorageService.to.remove(STORAGE_USER_TOKEN_KEY);
+    // if (_isLogin.value) await UserAPI.logout();
+    await StorageService.to.remove(STORAGE_USER_TOKEN_KEY);
     await StorageService.to.remove(STORAGE_USER_PROFILE_KEY);
     _isLogin.value = false;
-    token = '';*/
+    token = '';
     Get.offAllNamed(AppRoutes.SIGN_IN);
   }
 }

@@ -43,9 +43,37 @@
     </script>
     <!-- This script adds the flutter initialization JS code -->
     <script type="application/javascript" src="flutter.js" defer></script>
+
   </head>
   <body>
     // ...
+    
+    <script src="https://apis.google.com/js/api.js"></script>
+<script>
+          function start() {
+            // 2. Initialize the JavaScript client library.
+            gapi.client.init({
+              'apiKey': 'AIzaSyAjgsWDBB87yda79f_eLtc3Zht_i3PuNac',
+              // Your API key will be automatically added to the Discovery Document URLs.
+              'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+              // clientId and scope are optional if auth is not required.
+              'clientId': '236478353402-7sth25gkujru7chqakrp07oakdo8do7l.apps.googleusercontent.com',
+              'scope': 'openid profile email',
+            }).then(function() {
+              // 3. Initialize and make the API request.
+              return gapi.client.people.people.get({
+                'resourceName': 'people/me',
+                'requestMask.includeField': 'person.names'
+              });
+            }).then(function(response) {
+              console.log(response.result);
+            }, function(reason) {
+              console.log('Error: ' + reason.result.error.message);
+            });
+          };
+          // 1. Load the JavaScript client library.
+          gapi.load('client', start);
+          </script>
     <script type="module">
       import {} from "https://www.gstatic.com/firebasejs/10.1.0/firebase-messaging.js";
       // Import the functions you need from the SDKs you need

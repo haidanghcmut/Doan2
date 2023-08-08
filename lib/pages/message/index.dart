@@ -1,5 +1,5 @@
 library message;
 export './state.dart';
 export './controller.dart';
-export './bindings.dart';
+export 'binding.dart';
 export './view.dart';

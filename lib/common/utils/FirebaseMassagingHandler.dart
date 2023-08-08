@@ -6,7 +6,7 @@ import 'package:chat_app/common/entities/entities.dart';
 import 'package:chat_app/common/routes/names.dart';
 import 'package:chat_app/common/store/store.dart';
 import 'package:chat_app/common/values/values.dart';
-
+import 'package:chat_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -316,7 +316,7 @@ class FirebaseMassagingHandler {
     }
    // PlascoRequests().initReport();
   }
-/*
+
   @pragma('vm:entry-point')
   static Future<void> firebaseMessagingBackground(RemoteMessage message) async {
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform,);
@@ -355,6 +355,6 @@ class FirebaseMassagingHandler {
 
     }
 
-  }*/
+  }
 }
 
