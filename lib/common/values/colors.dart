@@ -1,13 +1,13 @@
 import 'dart:ui';
 
 class AppColors {
-  /// background white color
+  /// 主背景 白色
   static const Color primaryBackground = Color.fromARGB(255, 255, 255, 255);
-  /// background grey color
+  /// 主背景 灰色
   static const Color primarySecondaryBackground = Color.fromARGB(255, 247, 247, 249);
-  /// primary color
+  /// 主控件-背景
   static const Color primaryElement = Color.fromARGB(255, 74, 123, 246);
-  /// primary color black
+  /// 主文本 黑
   static const Color primaryText = Color.fromARGB(255, 32, 47, 62);
   static const Color primary_bg = Color.fromARGB(210, 32, 47, 62);
   /// 主控件-文本 白色

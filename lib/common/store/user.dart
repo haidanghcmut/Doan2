@@ -18,14 +18,12 @@ class UserStore extends GetxController {
   bool get isLogin => _isLogin.value;
   UserItem get profile => _profile.value;
   bool get hasToken => token.isNotEmpty;
-  set setIsLogin(value) => _isLogin.value = value;
 
   @override
   void onInit() {
     super.onInit();
     token = StorageService.to.getString(STORAGE_USER_TOKEN_KEY);
     var profileOffline = StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
-    print(profileOffline);
     if (profileOffline.isNotEmpty) {
       _isLogin.value = true;
       _profile(UserItem.fromJson(jsonDecode(profileOffline)));
@@ -44,7 +42,7 @@ class UserStore extends GetxController {
     // var result = await UserAPI.profile();
     // _profile(result);
     // _isLogin.value = true;
-    return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
+   return StorageService.to.getString(STORAGE_USER_PROFILE_KEY);
   }
 
   // 保存 profile
@@ -57,7 +55,7 @@ class UserStore extends GetxController {
 
   // 注销
   Future<void> onLogout() async {
-    // if (_isLogin.value) await UserAPI.logout();
+   // if (_isLogin.value) await UserAPI.logout();
     await StorageService.to.remove(STORAGE_USER_TOKEN_KEY);
     await StorageService.to.remove(STORAGE_USER_PROFILE_KEY);
     _isLogin.value = false;

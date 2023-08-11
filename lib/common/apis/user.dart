@@ -19,7 +19,6 @@ class UserAPI {
     );
     return UserLoginResponseEntity.fromJson(response);
   }
-
   static Future<BaseResponseEntity> UpdateProfile({
     LoginRequestEntity? params,
   }) async {
@@ -29,4 +28,6 @@ class UserAPI {
     );
     return BaseResponseEntity.fromJson(response);
   }
+
+
 }

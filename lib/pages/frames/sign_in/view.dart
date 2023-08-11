@@ -25,7 +25,7 @@ class SignInPage extends GetView<SignInController> {
     );
   }
 
-  // 第三方登录
+  // third party login
   Widget _buildThirdPartyGoogleLogin() {
     return GestureDetector(
         child: Container(

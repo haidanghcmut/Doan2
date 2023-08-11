@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:chat_app/common/apis/apis.dart';
 import 'package:chat_app/common/services/services.dart';
 import 'package:chat_app/common/values/server.dart';
@@ -84,7 +86,6 @@ class SignInController extends GetxController {
           loginPageListRequestEntity.email = email;
           loginPageListRequestEntity.open_id = id;
           loginPageListRequestEntity.type = 2;
-
           asyncPostAllData(loginPageListRequestEntity);
         } else {
           toastInfo(msg: 'email login error');

@@ -1,5 +1,5 @@
 // baidu yapi
- const SERVER_API_URL = 'http://172.20.11.235:8001/';
+ const SERVER_API_URL = 'http://192.168.1.6:8001/';
 
  const APPID = "d617fae9f73e4458a31866efc03fde11";
 

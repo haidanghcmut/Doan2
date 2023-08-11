@@ -15,7 +15,7 @@ class AppTheme {
     colorScheme: ColorScheme.fromSwatch().copyWith(
       secondary: AppColor.accentColor,
     ),
-    appBarTheme: const AppBarTheme(
+    appBarTheme: AppBarTheme(
       elevation: 0,
       centerTitle: true,
       backgroundColor: Colors.white,
@@ -33,14 +33,14 @@ class AppTheme {
         fontWeight: FontWeight.w500,
       ),
     ),
-    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColor.scaffoldBackground,
       unselectedLabelStyle: TextStyle(fontSize: 12),
       selectedLabelStyle: TextStyle(fontSize: 12),
       unselectedItemColor: Color(0xffA2A5B9),
       selectedItemColor: AppColor.accentColor,
     ),
-    tabBarTheme: const TabBarTheme(
+    tabBarTheme: TabBarTheme(
       indicatorSize: TabBarIndicatorSize.label,
       labelColor: AppColor.accentColor,
       unselectedLabelColor: AppColor.secondaryText,
