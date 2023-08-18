@@ -89,6 +89,7 @@ dependencies:
   flutter_localization: ^0.1.13
   flutter_localizations:
       sdk: flutter
+  flutter_meta_sdk: ^1.0.2
 
 dev_dependencies:
   flutter_test:

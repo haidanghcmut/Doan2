@@ -23,7 +23,6 @@ class MessageController extends GetxController with WidgetsBindingObserver {
   final db = FirebaseFirestore.instance;
 
   goProfile() async {
-
     var result = await Get.toNamed(AppRoutes.Profile,
         arguments: state.head_detail.value);
     if (result == "finish") {
@@ -42,7 +41,7 @@ class MessageController extends GetxController with WidgetsBindingObserver {
     } else {
       asyncLoadCallData();
     }
-      EasyLoading.dismiss();
+    EasyLoading.dismiss();
   }
 
   asyncLoadMsgData() async {
@@ -228,7 +227,7 @@ class MessageController extends GetxController with WidgetsBindingObserver {
 
   fireMessage() async {
     String? fcmToken = await FirebaseMessaging.instance.getToken();
-    print(fcmToken);
+    print("...my device_token is $fcmToken");
     if (fcmToken != null) {
       BindFcmTokenRequestEntity bindFcmTokenRequestEntity =
           new BindFcmTokenRequestEntity();
@@ -246,7 +245,7 @@ class MessageController extends GetxController with WidgetsBindingObserver {
           var to_token = data["token"];
           var to_name = data["name"];
           var to_avatar = data["avatar"];
-        //  var doc_id = data["doc_id"];
+          //  var doc_id = data["doc_id"];
           if (to_token != null && to_name != null && to_avatar != null) {
             var item = state.msgList.value
                 .where((element) => element.token == to_token)
@@ -268,7 +267,7 @@ class MessageController extends GetxController with WidgetsBindingObserver {
   }
 
   sendNotifications(String call_type, String to_token, String to_avatar,
-      String to_name,String doc_id) async {
+      String to_name, String doc_id) async {
     CallRequestEntity callRequestEntity = new CallRequestEntity();
     callRequestEntity.call_type = call_type;
     callRequestEntity.to_token = to_token;
@@ -292,11 +291,10 @@ class MessageController extends GetxController with WidgetsBindingObserver {
     super.onInit();
     getProfile();
     _snapshots();
-
   }
 
   @override
-  void onReady() async{
+  void onReady() async {
     super.onReady();
     fireMessage();
     WidgetsBinding.instance.addObserver(this);
@@ -314,9 +312,8 @@ class MessageController extends GetxController with WidgetsBindingObserver {
     super.dispose();
   }
 
-
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async{
+  void didChangeAppLifecycleState(AppLifecycleState state) async {
     print("-didChangeAppLifecycleState-" + state.toString());
     switch (state) {
       case AppLifecycleState.inactive: // 处于这种状态的应用程序应该假设它们可能在任何时候暂停。
@@ -350,7 +347,7 @@ class MessageController extends GetxController with WidgetsBindingObserver {
       String to_name = data["to_name"];
       String to_avatar = data["to_avatar"];
       String call_type = data["call_type"];
-      String doc_id = data["doc_id"]??"";
+      String doc_id = data["doc_id"] ?? "";
       DateTime expire_time = DateTime.parse(data["expire_time"]);
       DateTime nowtime = DateTime.now();
       var Seconds = nowtime.difference(expire_time).inSeconds;
@@ -395,7 +392,8 @@ class MessageController extends GetxController with WidgetsBindingObserver {
                             if (Get.isSnackbarOpen) {
                               Get.closeAllSnackbars();
                             }
-                            sendNotifications("cancel", to_token, to_avatar, to_name, doc_id);
+                            sendNotifications(
+                                "cancel", to_token, to_avatar, to_name, doc_id);
                           },
                           child: Container(
                             width: 40.w,

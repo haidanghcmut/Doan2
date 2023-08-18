@@ -168,6 +168,8 @@ class VoiceCallViewController extends GetxController {
     CallTokenRequestEntity callTokenRequestEntity =
         new CallTokenRequestEntity();
     callTokenRequestEntity.channel_name = state.channelId.value;
+    print("...channel id is ${state.channelId.value}");
+    print("...my access token is ${UserStore.to.token}");
     var res = await ChatAPI.call_token(params: callTokenRequestEntity);
     if (res.code == 0) {
       return res.data!;
@@ -199,8 +201,8 @@ class VoiceCallViewController extends GetxController {
     sendMessage(sendcontent);
   }
 
-  sendMessage(String sendcontent) async{
-    if(state.doc_id.value.isEmpty){
+  sendMessage(String sendcontent) async {
+    if (state.doc_id.value.isEmpty) {
       return;
     }
     final content = Msgcontent(
@@ -210,26 +212,40 @@ class VoiceCallViewController extends GetxController {
       addtime: Timestamp.now(),
     );
 
-    await db.collection("message").doc(state.doc_id.value).collection("msglist").withConverter(
-      fromFirestore: Msgcontent.fromFirestore,
-      toFirestore: (Msgcontent msgcontent, options) => msgcontent.toFirestore(),
-    ).add(content);
-    var message_res = await db.collection("message").doc(state.doc_id.value).withConverter(
-      fromFirestore: Msg.fromFirestore,
-      toFirestore: (Msg msg, options) => msg.toFirestore(),
-    ).get();
-    if(message_res.data()!=null){
+    await db
+        .collection("message")
+        .doc(state.doc_id.value)
+        .collection("msglist")
+        .withConverter(
+          fromFirestore: Msgcontent.fromFirestore,
+          toFirestore: (Msgcontent msgcontent, options) =>
+              msgcontent.toFirestore(),
+        )
+        .add(content);
+    var message_res = await db
+        .collection("message")
+        .doc(state.doc_id.value)
+        .withConverter(
+          fromFirestore: Msg.fromFirestore,
+          toFirestore: (Msg msg, options) => msg.toFirestore(),
+        )
+        .get();
+    if (message_res.data() != null) {
       var item = message_res.data()!;
-      int to_msg_num = item.to_msg_num==null?0:item.to_msg_num!;
-      int from_msg_num = item.from_msg_num==null?0:item.from_msg_num!;
+      int to_msg_num = item.to_msg_num == null ? 0 : item.to_msg_num!;
+      int from_msg_num = item.from_msg_num == null ? 0 : item.from_msg_num!;
       if (item.from_token == profile_token) {
         from_msg_num = from_msg_num + 1;
       } else {
         to_msg_num = to_msg_num + 1;
       }
-      await db.collection("message").doc(state.doc_id.value).update({"to_msg_num":to_msg_num,"from_msg_num":from_msg_num,"last_msg":sendcontent,"last_time":Timestamp.now()});
+      await db.collection("message").doc(state.doc_id.value).update({
+        "to_msg_num": to_msg_num,
+        "from_msg_num": from_msg_num,
+        "last_msg": sendcontent,
+        "last_time": Timestamp.now()
+      });
     }
-
   }
 
   joinChannel() async {
@@ -268,6 +284,7 @@ class VoiceCallViewController extends GetxController {
     callRequestEntity.to_avatar = state.to_avatar.value;
     callRequestEntity.doc_id = state.doc_id.value;
     callRequestEntity.to_name = state.to_name.value;
+    print("...the other's user token is ${state.to_token.value}");
     var res = await ChatAPI.call_notifications(params: callRequestEntity);
     print(res);
     if (res.code == 0) {
